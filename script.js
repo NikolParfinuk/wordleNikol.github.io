@@ -1,13 +1,25 @@
 //Variables y constantes
 let intentos = 6;
 const letrascantidad = 5
-let diccionario = ["HIELO", "BUENO", "METRO", "JOVEN", "CANTO"]
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+let palabra= "";
 const BUTTON = document.getElementById('guess-button')
 const MENSAJEP = document.getElementById('mensajep')
 const ERROR = document.getElementById('error')
-ERROR.style.display="none";
-console.log("La palabra es: "+palabra);
+ERROR.style.display = "none";
+const url = "https://random-word-api.herokuapp.com/word?length=5&&lang=es";
+//obtenemos la palabra de la api
+fetch(url)
+    .then(response => response.json())
+    .then(response => {
+        console.log("la palabra es: ", response);
+        //palabra en mayuscula y remueve el acento de la palabra
+        palabra = response[0].toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    })
+    .catch(err => {
+        console.error("Error al obtener la palabra:", err);
+        let diccionario = ["RISAS", "ARENA", "TIGRE", "CABLE", "SILLA"]
+        palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+    });
 
 // Usamos el evento para cuando se haga click
 BUTTON.addEventListener('click', intentar)
@@ -33,7 +45,7 @@ function grillaLetras(intento) {
     const GRID = document.getElementById('grid')
     const ROW = document.createElement('div')
     ROW.className = 'row';
-    let quedaaux= intentos;
+    let quedaaux = intentos;
     for (let i in intento) {
         const SPAN = document.createElement('span')
         SPAN.className = 'letter'
@@ -50,9 +62,9 @@ function grillaLetras(intento) {
             SPAN.style.backgroundColor = '#d3d3d3';
         }
         ROW.appendChild(SPAN)
-        
+
         MENSAJEP.style.display = 'block'
-        MENSAJEP.innerHTML = "Quedaron " + (intentos-1) + " intentos de 6"
+        MENSAJEP.innerHTML = "Quedaron " + (intentos - 1) + " intentos de 6"
     }
     GRID.appendChild(ROW)
 
@@ -63,7 +75,7 @@ function juegoAhorcado(intento) {
         grillaLetras(intento);
         terminar('Felicidades!! haz ganado!!')
         intentos -= 1;//cada vez que lo intentas te quedan menos intentos 
-       
+
     }
     else {
         grillaLetras(intento);
@@ -84,7 +96,7 @@ function terminar(mensaje) {
     BUTTON.disabled = true;
     let contenedor = document.getElementById('intentos');
     contenedor.innerHTML = mensaje
-   
+
 }
 // toma lo ingresado y pone todas las letras en mayusculas
 function leerIntento() {

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+body {
+    font-family: "Latin Modern Roman";
+    font-style: italic;
+    background: url("./imagen.jpg") no-repeat center center fixed; 
+    background-size: cover; 
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color:#727cdb;
+    margin-top: 50px;
+    color:#b15992 ;
+}
+
+#guess-input {
+    display: block;
+    background-color:#e6e6fa;
+    border-color:#cca2be ;
+    margin: 0 auto 20px;
+    padding: 10px;
+    font-size: 18px;
+    width: 250px;
+    border: 1px solid #b8e4ff;
+    font-family: "Latin Modern Roman";
+    font-style: italic;
+
+}
+
+#guess-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color:#ff94a2 ;
+    color: #060507;
+    border: none;
+    border-radius: 10px;
+    font-family: "Latin Modern Roman";
+    font-style: italic;
+
+
+}
+
+#contenedor {
+    position: relative;
+}
+
+#error {
+    text-align: center;
+    font-size: x-large;
+    font-weight: 800;
+    display: 'none';
+
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.letter {
+    border: 1px solid #e79eff;
+    padding: 3px;
+    margin: 3px;
+    min-width: 20px;
+    text-align: relative;
+    display: inline-block
+}
+
+#grid{
+    border-color: #060507;
+    margin: 40px auto;
+    position: relative;
+    top: 30%;
+    left: 44%;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.input-area {
+    margin: 30px;
+    background-color: #87cefa;
+}
+
+#intentos {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 800;
+}
+
+#mensajep {
+    text-align: center;
+    font-size: x-large;
+    font-weight: 800;
+    display: 'none';
+}
